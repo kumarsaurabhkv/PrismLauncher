@@ -15,10 +15,10 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Add Microsoft account&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Add an account&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
      </property>
@@ -30,7 +30,7 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>In order to play Minecraft, you must have at least one Microsoft account logged in. Do you want to log in now?</string>
+       <string>In order to play Minecraft, you must have at least one account. You can add an offline account without a Microsoft login, or log in with a Microsoft account.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -45,12 +45,19 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Add Microsoft account</string>
-     </property>
-    </widget>
-   </item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Add Microsoft account</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="offlineButton">
+      <property name="text">
+       <string>Add offline account</string>
+      </property>
+     </widget>
+    </item>
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
