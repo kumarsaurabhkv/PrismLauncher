@@ -16,6 +16,7 @@ class LoginWizardPage : public BaseWizardPage {
     void initializePage() override;
     bool validatePage() override;
     void retranslate() override;
+
    private slots:
     void on_pushButton_clicked();
     void on_offlineButton_clicked();
