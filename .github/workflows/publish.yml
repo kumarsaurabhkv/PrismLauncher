@@ -3,6 +3,13 @@ name: Publish
 on:
   release:
     types: [ released ]
+  # Trigger automatically after "Build Application and Make Release" completes
+  workflow_run:
+    workflows: ["Build Application and Make Release"]
+    types:
+      - completed
+  # Allows manual triggering from the Actions tab
+  workflow_dispatch:
 
 permissions: {}
 
