@@ -78,46 +78,50 @@ runs:
 
         case "$RUNNER_ARCH" in
         "X64")
-        	vcpkg_arch=x64
-        	;;
+            vcpkg_arch=x64
+            ;;
         "ARM64")
           vcpkg_arch=arm64
           ;;
         *)
-        	echo "# 🚨 The architecture \"$RUNNER_ARCH\" is not supported by vcpkg in CI!" >>"$GITHUB_STEP_SUMMARY"
-        	exit 1
-        	;;
+            echo "# 🚨 The architecture \"$RUNNER_ARCH\" is not supported by vcpkg in CI!" >>"$GITHUB_STEP_SUMMARY"
+            exit 1
+            ;;
         esac
 
         case "$RUNNER_OS" in
         "Linux")
-        	vcpkg_platform=linux
-        	;;
+            vcpkg_platform=linux
+            ;;
         "macOS")
-        	vcpkg_arch=universal
-        	vcpkg_platform=osx
-        	;;
+            vcpkg_arch=universal
+            vcpkg_platform=osx
+            ;;
         "Windows")
-        	if [[ "${{ inputs.msystem }}" != "" ]]; then
-        		vcpkg_platform=mingw-static-release
-        	else
-        		vcpkg_platform=windows
-        	fi
-        	;;
+            if [[ "${{ inputs.msystem }}" != "" ]]; then
+                vcpkg_platform=mingw-static-release
+            else
+                vcpkg_platform=windows
+            fi
+            ;;
         *)
-        	echo "# 🚨 The platform \"$platform\" is not supported by vcpkg in CI!" >>"$GITHUB_STEP_SUMMARY"
-        	exit 1
-        	;;
+            echo "# 🚨 The platform \"$platform\" is not supported by vcpkg in CI!" >>"$GITHUB_STEP_SUMMARY"
+            exit 1
+            ;;
         esac
 
         echo "VCPKG_TRIPLET=$vcpkg_arch-$vcpkg_platform" >> "$GITHUB_ENV"
 
-  # old python versions detect 7z files as zip, breaking aqtinstall. see https://github.com/miurahr/aqtinstall/issues/1042
     - name: Update Python
       if: ${{ inputs.msystem == '' }}
-      uses: actions/setup-python@v7
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.14'
+        python-version: '3.14.0-alpha.1'
+
+    - name: Install 7-Zip
+      if: ${{ runner.os == 'Windows' }}
+      shell: powershell
+      run: choco install 7zip -y
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
