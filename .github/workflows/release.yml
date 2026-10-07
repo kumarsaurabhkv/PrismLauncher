@@ -4,6 +4,13 @@ on:
   push:
     tags:
       - "*"
+  # Trigger automatically after the "Build" workflow completes successfully
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+  # Allows manual triggering from the Actions tab
+  workflow_dispatch:
 
 permissions: {}
 
